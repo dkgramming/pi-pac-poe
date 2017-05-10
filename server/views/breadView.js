@@ -11,8 +11,6 @@ const setup = () => {
   });
 };
 
-setup();
-
 const render = (gameState) => {
   gameState.forEach((row, y) => {
     row.forEach((color, x) => {
@@ -35,4 +33,7 @@ const render = (gameState) => {
   });
 };
 
-module.exports = render;
+module.exports = {
+  setup,
+  render
+};
