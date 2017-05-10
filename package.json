@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "express": "^4.15.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
     "rpi-gpio": "^0.8.1"
   }
 }
