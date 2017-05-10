@@ -1,4 +1,4 @@
-// const gpio = require('rpi-gpio');
+const gpio = require('rpi-gpio');
 const config = require('./config.js');
 const { Cell } = require('../../shared/enums.js');
 

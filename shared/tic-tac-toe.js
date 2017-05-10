@@ -62,9 +62,41 @@ const getMoves = (board, color) => {
   return moves;
 };
 
+const isEmptyBoard = (board) => {
+  let isEmpty = true;
+
+  board.forEach((row) => {
+    row.forEach((col) => {
+      if (isEmpty && col !== 0) {
+        isEmpty = false;
+      }
+    });
+  });
+  return isEmpty;
+};
+
+const randomMove = (board, color) => {
+  const moves = getMoves(board, color);
+  const d = new Date();
+  const ms = d.getMilliseconds();
+  const randomIndex = ms & moves.length;
+  
+  return moves[randomIndex];
+};
+
+const sleep = (ms) => {
+  ms += new Date().getTime();
+  while (new Date() < ms){}
+};
+
 const findBestMove = (board, color) => {
   let bestMove = null;
   let bestScore = -Infinity;
+
+  // Optimization: first move takes too long otherwise
+  if (isEmptyBoard(board)) {
+    return randomMove(board, color);
+  }
 
   getMoves(board, color).forEach((move) => {
     const currentScore = minimax(move, 0, true, color);
@@ -73,6 +105,8 @@ const findBestMove = (board, color) => {
       bestScore = currentScore;
     }
   });
+
+  sleep(5000);
 
   return bestMove;
 };
