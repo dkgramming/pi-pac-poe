@@ -2,10 +2,12 @@
   "name": "pi-pac-poe",
   "version": "1.0.0",
   "description": "CMPE-240 Final Project",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node ./server/app.js",
+    "startClient": "node ./client/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint *.js"
+    "lint": "./node_modules/.bin/eslint server/**/*.js client/**/*.js"
   },
   "repository": {
     "type": "git",
