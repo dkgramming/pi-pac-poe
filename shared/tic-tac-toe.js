@@ -11,19 +11,23 @@ const winPermutations = [
   [2, 4, 6], // top right to bottom left
 ];
 
-const col = (index) => Math.floor(index / 3);
-const row = (index) => index % 3;
+const col = index => Math.floor(index / 3);
+const row = index => index % 3;
 
 const findWinConfig = (gameState) => {
-  const getCell = (index) => {
-    return gameState[row(index)][col(index)];
-  };
+  const getCell = index => gameState[row(index)][col(index)];
 
   const win = winPermutations.map((perm) => {
-    const isWin = getCell(perm[0]) === getCell(perm[1]) === getCell(perm[2]);
-    return {
-      color: null,
-      win: []
-    };
-  });    
+    const isWin = getCell(perm[0]) === getCell(perm[1]) &&
+                  getCell(perm[0]) === getCell(perm[2]);
+
+    return isWin ? {
+      color: getCell(perm[0]),
+      win: perm,
+    } : null;
+  });
+
+  return win.reduce((prev, curr) => {
+    return prev ? prev : curr;
+  }, null);
 };
