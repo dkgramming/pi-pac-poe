@@ -92,6 +92,7 @@ const minimax = (gameState, depth, isMaximizingPlayer, color) => {
     return 0;
   }
 
+  // Recursive case
   let bestScore;
 
   if (isMaximizingPlayer) {
@@ -117,5 +118,5 @@ const minimax = (gameState, depth, isMaximizingPlayer, color) => {
 module.exports = {
   getMoves,
   minimax,
-  findBestMove
+  findBestMove,
 };

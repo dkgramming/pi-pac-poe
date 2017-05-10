@@ -1,9 +1,10 @@
-const gpio = require('rpi-gpio');
+// const gpio = require('rpi-gpio');
 const config = require('./config.js');
 const { Cell } = require('../../shared/enums.js');
 
 const on = pin => gpio.write(pin, true);
 const off = pin => gpio.write(pin, false);
+
 const setup = () => {
   config.forEach((cell) => {
     gpio.setup(cell.red, gpio.DIR_OUT);
@@ -35,5 +36,5 @@ const render = (gameState) => {
 
 module.exports = {
   setup,
-  render
+  render,
 };

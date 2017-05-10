@@ -1,4 +1,6 @@
 const { Cell } = require('../../shared/enums.js');
+const TicTacToe = require('../../shared/tic-tac-toe.js');
+const BreadView = require('../views/breadView.js');
 
 let gameState = [];
 
@@ -14,15 +16,35 @@ const startGame = (req, res) => {
   initializeGameState();
 
   // first player is client
-  if (firstPlayer === 1) {
-    res.status('200').json({ gameState: JSON.stringify(gameState) });
+  if (firstPlayer === Cell.WHITE) {
+    res.status(200).json({ gameState: JSON.stringify(gameState) });
+  } else {
+    const nextMove = TicTacToe.findBestMove(gameState, Cell.RED);
+
+    BreadView.render(nextMove);
+
+    res.status(200).json({ gameState: JSON.stringify(nextMove) });
   }
 };
 
 const makeMove = (req, res) => {
   console.log('white made a move!!! :O');
 
-  gameState = req.param('gameState');
+  const newGameState = JSON.parse(req.body.gameState);
+  console.log(newGameState);
+
+  BreadView.render(newGameState);
+
+  const nextMove = TicTacToe.findBestMove(newGameState, Cell.RED);
+
+  if (!nextMove) {
+    console.log('game ended :O');
+    return res.status(200).json({ gameOver: true });
+  }
+
+  BreadView.render(nextMove);
+
+  return res.status(200).json({ gameState: JSON.stringify(nextMove) });
 };
 
 module.exports = {
