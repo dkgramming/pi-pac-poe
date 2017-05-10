@@ -21,6 +21,8 @@ const startGame = (req, res) => {
 
 const makeMove = (req, res) => {
   console.log('white made a move!!! :O');
+
+  gameState = req.param('gameState');
 };
 
 module.exports = {
