@@ -10,5 +10,5 @@ app.listen(port, () => {
 });
 
 request({ method: 'POST', url: 'http://localhost:3000/startGame' }, (err, response, body) => {
-  console.log(response);
+  console.log(body);
 });
