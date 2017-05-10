@@ -1,9 +1,17 @@
-module.exports.Game = {
-  startGame: (req, res) => {
-    console.log('start game plz!!!');
-  },
+const startGame = (req, res) => {
+  const firstPlayer = Math.floor(Math.random() * 2);
 
-  makeMove: (req, res) => {
-    console.log('white made a move!!! :O');
-  },
+  // first player is client
+  if (firstPlayer === 1) {
+    // res.status('200').json({  });
+  }
+};
+
+const makeMove = (req, res) => {
+  console.log('white made a move!!! :O');
+};
+
+module.exports = {
+  startGame,
+  makeMove,
 };
